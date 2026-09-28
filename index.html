@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omar Hesham — Computer Science, Python & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3fb;--card:#fff;--ink:#16224d;--mute:#56618a;--line:#cdd7ee;--a:#ffc93c;--b:#0f9d8a;--bar:#3b4fd8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a3a;--card:#1b2552;--ink:#eaf0ff;--mute:#a4b0dd;--line:#2f3c78;--bar:#8fa2ff}}
+:root[data-theme="dark"]{--bg:#121a3a;--card:#1b2552;--ink:#eaf0ff;--mute:#a4b0dd;--line:#2f3c78;--bar:#8fa2ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0}
+main{max-width:1000px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-weight:500}
+nav div{display:flex;gap:18px;flex-wrap:wrap}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px}
+button:hover,button.on{background:var(--a);color:#16224d;border-color:#16224d}
+:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.hero{padding:40px 0 30px}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);font-weight:800;letter-spacing:-.03em;max-width:12ch}
+.hero p{max-width:52ch;color:var(--mute);font-size:1.15rem}
+.lab{background:var(--card);border:2px solid var(--ink);border-radius:20px;padding:20px;margin-top:26px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:170px}
+.bars i{flex:1;background:var(--bar);border-radius:6px 6px 0 0;transition:height .25s,background .25s;cursor:pointer}
+.bars i.c{background:var(--a)}.bars i.f{background:var(--b)}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+#msg{color:var(--mute);font-size:.95rem;min-height:1.5em;margin:10px 0 0}
+section{padding:54px 0 10px}
+h2{font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:22px;transition:opacity .2s,transform .2s}
+.card.dim{opacity:.3}
+.card h3{font-size:1.5rem;margin-bottom:8px}
+.card p{margin:0 0 12px;color:var(--mute)}
+.tags{font-size:.85rem;color:var(--b);font-weight:500}
+.ents{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.ents button{padding:3px 11px;font-size:.85rem;border-width:1.5px}
+.note{font-size:.9rem;min-height:2.8em;color:var(--ink)}
+.tl{border-left:4px solid var(--a);padding:2px 0 2px 20px;max-width:64ch}
+.tl h3{font-size:1.5rem}
+.stat{display:flex;gap:26px;flex-wrap:wrap;margin-top:18px}
+.stat b{font:800 2rem "Bricolage Grotesque",sans-serif;display:block}
+footer{padding:60px 0 40px}
+footer h2{font-size:clamp(2.2rem,7vw,4.4rem)}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.links a{border:2px solid var(--ink);background:var(--a);color:#16224d;border-radius:999px;padding:10px 20px;text-decoration:none;font-weight:500}
+#pg{position:fixed;top:0;left:0;height:5px;width:0;background:var(--a);z-index:9}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}}
+.hero h1{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}.hero>p{animation:rise .9s .25s both}
+pre#code{background:#16224d;color:#ffe9a8;border-radius:14px;padding:16px 18px;font:14px/1.5 ui-monospace,Menlo,monospace;margin:22px 0 0;max-width:520px;min-height:5.6em;overflow-x:auto;animation:rise .9s .5s both}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+.card.dim.in{opacity:.3}
+#net{width:100%;height:auto;background:var(--card);border:2px solid var(--ink);border-radius:20px}
+#net .e{stroke:var(--line);stroke-width:2;stroke-dasharray:6 6;animation:flow 1.2s linear infinite;transition:opacity .2s}
+#net .e.a{stroke:var(--b);stroke-width:3.5}
+#net.hl .e:not(.a){opacity:.15}
+#net .n{cursor:pointer;transition:opacity .2s}
+#net.hl .n:not(.a){opacity:.25}
+#net .n circle{fill:var(--bar);transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-in-out infinite}
+#net .n:nth-of-type(2n) circle{animation-delay:-1.5s}
+#net .n.p circle{fill:var(--a);stroke:var(--ink);stroke-width:2}
+#net .n text{fill:var(--ink);font:500 13px "IBM Plex Sans",sans-serif}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@keyframes pulse{50%{transform:scale(1.3)}}
+.hint{color:var(--mute);font-size:.95rem;margin:0 0 14px}
+.flow{display:flex;flex-wrap:wrap;gap:22px}
+.st{position:relative;border:2px solid var(--ink);background:var(--card);border-radius:14px;padding:12px 20px;font-weight:500;cursor:pointer;transition:background .3s,transform .3s}
+.st:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:22px;border-top:3px dashed var(--line)}
+.st.on{background:var(--a);color:#16224d;transform:translateY(-8px) scale(1.06)}
+#fl-note{max-width:60ch;min-height:3.2em;margin-top:18px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="pg"></div>
+<main>
+<nav><b>Omar Hesham</b><div><a href="#work">Projects</a><a href="#path">Experience</a><a href="#hello">Contact</a></div></nav>
+
+<header class="hero">
+<h1>I make computers think, and students think like computers.</h1>
+<p>Computer Science student at New Mansoura University. I build with Python, SQL and AI, and I teach programming and problem solving at EduZone.</p>
+<pre id="code" aria-label="Python snippet"></pre>
+<div class="lab" aria-label="Interactive sorting demo">
+<div class="bars" id="bars"></div>
+<div class="ctl">
+<button id="shuf">Shuffle</button><button id="sort">Sort it</button><button id="bs">Binary search</button>
+<span style="color:var(--mute);font-size:.9rem">Try it: this is how I explain algorithms in class.</span>
+</div>
+<p id="msg">Click any bar to pick a target, then run Binary search.</p>
+</div>
+</header>
+
+<section>
+<h2>How my skills and work connect</h2>
+<p class="hint">Hover or tap any dot to light up its links.</p>
+<svg id="net" viewBox="0 0 780 320" role="img" aria-label="Network linking skills to projects and teaching"></svg>
+</section>
+
+<section>
+<h2>How the reservation system's parts fit together</h2>
+<p class="hint">An illustrated walk-through. Tap a step to jump to it.</p>
+<div class="flow" id="flow"></div>
+<p id="fl-note"></p>
+</section>
+
+<section id="work">
+<h2>Projects. Tap a skill to see what uses it.</h2>
+<div class="chips" id="chips"></div>
+<div class="grid">
+<article class="card" data-s="Python,AI"><h3>AI Housing Assistant</h3><p>An AI-based project that helps users with housing needs and gives recommendations.</p><div class="tags">Python · AI</div></article>
+<article class="card" data-s="SQL,Databases"><h3>Restaurant Reservation System</h3><p>A database-driven system. Tap a part to see what it manages.</p>
+<div class="ents" id="ents"></div><div class="note" id="ent-note">Users, restaurants, tables, reservations, payments, waiting lists and ratings.</div><div class="tags">SQL · Databases</div></article>
+<article class="card" data-s="Python,Data Structures,Databases"><h3>Student Management System</h3><p>A software project for organizing and managing student information and operations.</p><div class="tags">Python · Data Structures · Databases</div></article>
+</div>
+</section>
+
+<section id="path">
+<h2>Experience</h2>
+<div class="tl"><h3>Computer Science Instructor, EduZone</h3><p style="color:var(--mute);margin:4px 0 10px">2025 to present</p>
+<p>I explain computer science and programming in a clear, practical way, and I help students build programming, computational thinking and problem-solving skills.</p></div>
+<div class="stat"><div><b data-n="3">0</b>projects built</div><div><b data-n="2">0</b>certifications</div><div><b data-n="2">0</b>languages spoken</div><div><b data-n="1">0</b>teaching role since 2025</div></div>
+</section>
+
+<section>
+<h2>Certifications and languages</h2>
+<div class="grid">
+<div class="card"><h3>Huawei Python Course</h3></div>
+<div class="card"><h3>AI Course, Anthropic</h3></div>
+<div class="card"><h3>Arabic</h3><p>Fluent</p></div>
+<div class="card"><h3>English</h3><p>Advanced</p></div>
+</div>
+</section>
+
+<footer id="hello">
+<h2>Let's build something together.</h2>
+<div class="links"><a href="https://linkedin.com/in/omarhesham2005">LinkedIn</a><a href="tel:+201280353471">Call 01280353471</a></div>
+<p style="color:var(--mute)">Cairo, Egypt</p>
+</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);let a=[],pick=-1,busy=false;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function draw(cls={}){const b=$('bars');b.innerHTML='';a.forEach((v,i)=>{const e=document.createElement('i');e.style.height=v*1.6+'px';e.title=v;if(cls[i])e.className=cls[i];if(i===pick)e.className='c';e.onclick=()=>{if(busy)return;pick=i;$('msg').textContent='Target is '+a[i]+'. Sort first, then run Binary search.';draw()};b.appendChild(e)})}
+function shuffle(){a=Array.from({length:16},(_,i)=>i*6+10).sort(()=>Math.random()-.5);pick=-1;$('msg').textContent='Shuffled. Click a bar to pick a target.';draw()}
+async function sort(){if(busy)return;busy=true;for(let i=0;i<a.length;i++)for(let j=0;j<a.length-i-1;j++){if(a[j]>a[j+1]){[a[j],a[j+1]]=[a[j+1],a[j]];draw({[j]:'c',[j+1]:'c'});await wait(30)}}
+$('msg').textContent='Sorted with bubble sort, O(n²). Fine for 16 bars, slow for a million.';draw();busy=false}
+async function bs(){if(busy)return;const s=a.every((v,i)=>!i||a[i-1]<=v);if(!s){$('msg').textContent='Binary search needs sorted data. Press Sort it first.';return}
+if(pick<0)pick=Math.floor(Math.random()*a.length);const t=a[pick];busy=true;let lo=0,hi=a.length-1,n=0;
+while(lo<=hi){const m=(lo+hi)>>1;n++;const c={};for(let i=lo;i<=hi;i++)c[i]='c';c[m]='f';draw(c);$('msg').textContent='Step '+n+': checking '+a[m]+' for target '+t;await wait(700);
+if(a[m]===t){$('msg').textContent='Found '+t+' in '+n+' steps instead of up to '+a.length+'. That is O(log n).';busy=false;return}
+if(a[m]<t)lo=m+1;else hi=m-1}busy=false}
+$('shuf').onclick=()=>{if(!busy)shuffle()};$('sort').onclick=sort;$('bs').onclick=bs;shuffle();
+const skills=['Python','AI','Data Structures','SQL','Databases'];let on=null;
+skills.forEach(s=>{const b=document.createElement('button');b.textContent=s;b.onclick=()=>{on=on===s?null:s;[...$('chips').children].forEach(x=>x.classList.toggle('on',x.textContent===on));document.querySelectorAll('.card[data-s]').forEach(c=>c.classList.toggle('dim',!!on&&!c.dataset.s.split(',').includes(on)))};$('chips').appendChild(b)});
+const ents={Users:'Accounts of the people who book.',Restaurants:'Venues that accept reservations.',Tables:'Seating, tracked per restaurant.',Reservations:'Links a user to a table and a time.',Payments:'Records payment for a booking.','Waiting list':'Holds users when tables are full.',Ratings:'Feedback from users after a visit.'};
+Object.keys(ents).forEach(k=>{const b=document.createElement('button');b.textContent=k;b.onclick=()=>{$('ent-note').textContent=k+': '+ents[k]};$('ents').appendChild(b)});
+const src='class Instructor:\n    def teach(self, topic):\n        return "clear, practical, step by step"\n';let ci=0;
+(function t(){$('code').textContent=src.slice(0,ci)+(ci<src.length?'\u258c':'');if(ci++<src.length)setTimeout(t,45)})();
+const N={Python:[90,70,'s'],AI:[240,70,'s'],'Data Structures':[390,70,'s'],SQL:[540,70,'s'],Databases:[680,70,'s'],'AI Housing Assistant':[120,270,'p'],'Student Management':[340,270,'p'],'Reservation System':[560,270,'p'],'EduZone teaching':[690,180,'p']};
+const E=[['AI Housing Assistant','Python'],['AI Housing Assistant','AI'],['Student Management','Python'],['Student Management','Data Structures'],['Student Management','Databases'],['Reservation System','SQL'],['Reservation System','Databases'],['EduZone teaching','Python'],['EduZone teaching','Data Structures']];
+const sv=$('net');let h='';
+E.forEach(([p,s])=>{h+=`<line class="e" data-a="${p}" data-b="${s}" x1="${N[p][0]}" y1="${N[p][1]}" x2="${N[s][0]}" y2="${N[s][1]}"/>`});
+Object.entries(N).forEach(([k,[x,y,t]])=>{h+=`<g class="n ${t}" data-k="${k}" tabindex="0" transform="translate(${x} ${y})"><circle r="10"/><text y="${t=='s'?-20:30}" text-anchor="middle">${k}</text></g>`});
+sv.innerHTML=h;
+const lit=k=>{sv.classList.add('hl');sv.querySelectorAll('.e').forEach(e=>e.classList.toggle('a',e.dataset.a==k||e.dataset.b==k));const c=new Set([k]);E.forEach(([p,s])=>{if(p==k)c.add(s);if(s==k)c.add(p)});sv.querySelectorAll('.n').forEach(n=>n.classList.toggle('a',c.has(n.dataset.k)))};
+sv.querySelectorAll('.n').forEach(n=>{n.onmouseenter=n.onfocus=n.onclick=()=>lit(n.dataset.k);n.onmouseleave=n.onblur=()=>sv.classList.remove('hl')});
+const steps=[['User','A diner signs in and picks a restaurant.'],['Table','The system looks for a free table at that restaurant.'],['Reservation','A free table gets booked. If none is free, the diner joins the waiting list.'],['Payment','The payment for the booking is recorded.'],['Rating','After the visit, the diner rates the restaurant.']];
+let si=0;const fl=$('flow');
+steps.forEach(([n],i)=>{const d=document.createElement('div');d.className='st';d.textContent=n;d.onclick=()=>{si=i;show()};fl.appendChild(d)});
+function show(){[...fl.children].forEach((d,i)=>d.classList.toggle('on',i===si));$('fl-note').textContent=steps[si][1]}
+show();setInterval(()=>{si=(si+1)%steps.length;show()},2200);
+document.querySelectorAll('section h2,.card,.tl,.stat div,.flow,#net').forEach((e,i)=>{e.classList.add('rv');e.style.transitionDelay=(i%4)*70+'ms'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const el=e.target.querySelector('b'),n=+el.dataset.n;let v=0;const iv=setInterval(()=>{el.textContent=++v;if(v>=n)clearInterval(iv)},350)}),{threshold:.5});
+document.querySelectorAll('.stat div').forEach(d=>cio.observe(d));
+addEventListener('scroll',()=>{const d=document.documentElement;$('pg').style.width=(scrollY/Math.max(1,d.scrollHeight-innerHeight)*100)+'%'});
+</script>
+</body>
+</html>
